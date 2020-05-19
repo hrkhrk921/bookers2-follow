@@ -32,7 +32,19 @@ class UsersController < ApplicationController
   		render "edit"
   	end
   end
-  
+  def following
+      @user  = User.find(params[:id])
+      @book = Book.new
+      @users = @user.followings
+      render 'users/show_follow'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    @book = Book.new
+    @users = @user.followers
+    render 'users/show_follower'
+  end
 
   private
   def user_params
@@ -42,7 +54,7 @@ class UsersController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
 
-  #url直接防止　メソッドを自己定義してbefore_actionで発動。
+  #url直接防止メソッドを自己定義してbefore_actionで発動。
    def baria_user
   	unless params[:id].to_i == current_user.id
   		redirect_to user_path(current_user)

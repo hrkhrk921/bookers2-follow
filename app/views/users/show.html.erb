@@ -1,3 +1,6 @@
+<div class="container">
+<div class="row">
+	<%= flash[:notice] %>
 <div class="body">
 	<% if @book.errors.any? %>
     <div id="error_explanation">
@@ -9,8 +12,6 @@
       </ul>
     </div>
   <% end %>
-<div class="container">
-<div class="row">
 <div class="col-xs-3">
 <h2>User info</h2>
 <%= render 'users/profile', user: @user %>
